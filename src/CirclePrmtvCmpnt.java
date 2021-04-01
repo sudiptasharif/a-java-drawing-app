@@ -1,7 +1,7 @@
 /**
  * 
  * @author Sudipta Sharif
- * CSE 5322 Homework 1
+ * CSE 5322 Homework 2
  * 
  * Composite Pattern
  * Primitive Component 2: CirclePrimitiveComponent
@@ -9,18 +9,17 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class CirclePrimitiveComponent extends ShapeComponent{
-	private int radius;
+public class CirclePrmtvCmpnt extends ShapeCmpnt {
+	private final int RADIUS = 20;
 	
-	public CirclePrimitiveComponent(int x, int y, int r) {
+	public CirclePrmtvCmpnt(int x, int y) {
 		super(x, y);
-		radius = r;
 	}
 	
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
-		g.drawOval(super.getXCoord(), super.getYCoord(), radius, radius);
+		g.drawOval(super.getXCoord(), super.getYCoord(), RADIUS, RADIUS);
 	}
 	
 }
