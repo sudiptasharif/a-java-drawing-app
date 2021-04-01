@@ -24,7 +24,7 @@ public class AddBoxCmd implements Command {
 
     @Override
     public void redo() {
-        if (reversible()) {
+        if (reversible() && removedBox != null) {
             shapeCmpstCmpnt.add(removedBox);
             removedBox = null;
         }

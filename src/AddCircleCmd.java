@@ -25,7 +25,7 @@ public class AddCircleCmd implements Command {
 
     @Override
     public void redo() {
-        if(reversible()) {
+        if(reversible() && removedCircle != null) {
             shapeCmpstCmpnt.add(removedCircle);
             removedCircle = null;
         }

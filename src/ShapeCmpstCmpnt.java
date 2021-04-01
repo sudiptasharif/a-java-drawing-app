@@ -15,13 +15,15 @@ public class ShapeCmpstCmpnt extends ShapeCmpnt {
 	
 	@Override
 	public void add(ShapeCmpnt shape) {
-		if(shape != null)
-			shapeCollection.push(shape);
+		shapeCollection.push(shape);
 	}
 	
 	@Override
 	public ShapeCmpnt remove() {
-		return shapeCollection.pop();
+		ShapeCmpnt shapeCmpnt = null;
+		if(!shapeCollection.empty())
+			shapeCmpnt = shapeCollection.pop();
+		return shapeCmpnt;
 	}
 
 	@Override

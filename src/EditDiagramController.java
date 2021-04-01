@@ -5,6 +5,7 @@
  * 
  * Controller Pattern
  */
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.Stack;
 
@@ -12,55 +13,73 @@ public class EditDiagramController {
 	private Stack<Command> cmdHistoryStack;
 	private Stack<Command> cmdUndoStack;
 	private ShapeCmpnt shapeCmpstComponent;
-	private int shapeToDraw;
+	private MouseEvent mouseEvent;
+
+	private State addBoxState;
+	private State addCircleState;
+	private State initState;
+
+	private State state;
 	
 	public EditDiagramController() {
-		shapeToDraw = GUI.CODE_NONE;
 		shapeCmpstComponent = new ShapeCmpstCmpnt();
-		cmdHistoryStack = new Stack<>();
-		cmdUndoStack = new Stack<>();
+		cmdHistoryStack = new Stack<Command>();
+		cmdUndoStack = new Stack<Command>();
+		addBoxState = AddBoxState.getInstance();
+		addCircleState = AddCircleState.getInstance();
+		initState = InitState.getInstance();
+		state = initState;
+		mouseEvent = null;
 	}
-		
-	public void setShapeToDraw(int shapeCode) {
-		shapeToDraw = shapeCode;
-	}
-	
-	public void addShape(MouseEvent mouseEvent) {
-		Command cmd;
-		if (shapeToDraw == GUI.CODE_BOX) {
-			cmd = new AddBoxCmd(mouseEvent, shapeCmpstComponent);
-			cmdHistoryStack.push(cmd);
-		} else if (shapeToDraw == GUI.CODE_CIRC) {
-			cmd = new AddCircleCmd(mouseEvent, shapeCmpstComponent);
-			cmdHistoryStack.push(cmd);
-		} else {
-			cmd = null;
-		}
-		if (cmd != null) {
-			cmd.execute();
-		}
 
+	public void boxBtnClkd() {
+		state = state.boxBtnClkd(this);
 	}
-	
-	public void undoShapeDrawn() {
-		Command cmd;
-		if(!cmdHistoryStack.empty()) {
-			cmd = cmdHistoryStack.pop();
-			cmd.undo();
-			cmdUndoStack.push(cmd);
-		}
+
+	public void circleBtnClkd() {
+		state = state.circleBtnClkd(this);
 	}
-	
-	public void redoShapeDrawn() {
-		Command cmd;
-		if(!cmdUndoStack.empty()) {
-			cmd = cmdUndoStack.pop();
-			cmd.redo();
-			cmdHistoryStack.push(cmd);
-		}
+
+	public void mousePressed (MouseEvent e) {
+		this.mouseEvent = e;
+		state = state.mousePressed(this);
 	}
-	
+
+	public void undoBtnClkd() {
+		state = state.undoBtnClkd(this);
+	}
+
+	public void redoBtnClkd() {
+		state = state.redoBtnClkd(this);
+	}
+
+	public Command popCmdHistoryStack() {
+		Command poppedCmd = null;
+		if(!cmdHistoryStack.empty())
+			poppedCmd = cmdHistoryStack.pop();
+		return poppedCmd;
+	}
+
+	public void pushCmdHistoryStack(Command command) {
+		cmdHistoryStack.push(command);
+	}
+
+	public Command popCmdUndoStack() {
+		Command poppedCmd = null;
+		if(!cmdUndoStack.empty())
+			poppedCmd = cmdUndoStack.pop();
+		return poppedCmd;
+	}
+
+	public void pushCmdUndoStack(Command command) {
+		cmdUndoStack.push(command);
+	}
+
 	public ShapeCmpnt getCmpstComponent() {
 		return shapeCmpstComponent;
+	}
+
+	public MouseEvent getMouseEvent() {
+		return this.mouseEvent;
 	}
 }

@@ -4,8 +4,7 @@
  * CSE 5322 Homework 2
  * 
  */
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -37,10 +36,8 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 	private JButton btnRedo;
 	private int btnSelected;
 	private EditDiagramController editDiagramController;
-	
-	public GUI(){}
-	
-	public void start() {
+
+	public GUI(){
 		btnSelected = CODE_NONE;
 		editDiagramController = new EditDiagramController();
 		setTitle(FRAME_TITLE);
@@ -49,10 +46,10 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 		buildPanelCanvas();
 		buildPanelBtns();
 		add(panelCanvas, BorderLayout.CENTER);
-		add(panelBtns, BorderLayout.EAST);	
+		add(panelBtns, BorderLayout.EAST);
 		setVisible(true);
 	}
-	
+
 	private void buildPanelCanvas(){
 		panelCanvas = new PanelCanvas();
 		panelCanvas.addMouseListener(this);	
@@ -79,23 +76,17 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 	@Override
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource() == btnBox) {
-			btnSelected = CODE_BOX;
-			editDiagramController.setShapeToDraw(btnSelected);
+			editDiagramController.boxBtnClkd();
 		}else if(e.getSource() == btnCirc) {
-			btnSelected = CODE_CIRC;
-			editDiagramController.setShapeToDraw(btnSelected);
+			editDiagramController.circleBtnClkd();
 		}else if(e.getSource() == btnUndo){
-			btnSelected = CODE_UNDO;
-			editDiagramController.setShapeToDraw(CODE_NONE);
-			editDiagramController.undoShapeDrawn();
+			editDiagramController.undoBtnClkd();
 			repaint();
 		}else {
-			btnSelected = CODE_REDO;
-			editDiagramController.setShapeToDraw(CODE_NONE);
-			editDiagramController.redoShapeDrawn();
+			editDiagramController.redoBtnClkd();
 			repaint();
 		}
-		setTargetBtnFocus(btnSelected);
+		setTargetBtnFocus((JButton) e.getSource());
 	}
 
 	@Override
@@ -106,8 +97,9 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		editDiagramController.addShape(e);
+		editDiagramController.mousePressed(e);
 		panelCanvas.setCmpstComponent(editDiagramController.getCmpstComponent());
+		clearAllBtnFocus();
 		repaint();
 	}
 
@@ -136,16 +128,8 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 		btnRedo.setFocusPainted(false);
 	}
 	
-	private void setTargetBtnFocus(int btnCode) {
+	private void setTargetBtnFocus(JButton selectedBtn) {
 		clearAllBtnFocus();
-		
-		if(btnCode == CODE_BOX)
-			btnBox.setFocusPainted(true);
-		else if(btnCode == CODE_CIRC)
-			btnCirc.setFocusPainted(true);
-		else if(btnCode == CODE_UNDO)
-			btnUndo.setFocusPainted(true);
-		else if(btnCode == CODE_REDO)
-			btnRedo.setFocusPainted(true);
+		selectedBtn.setFocusPainted(true);
 	}
 }
