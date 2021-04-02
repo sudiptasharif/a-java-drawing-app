@@ -9,8 +9,11 @@ import java.awt.event.MouseEvent;
  */
 public class AddBoxState extends State {
     private static AddBoxState uniqueInstance;
+    private ShapeCmdMgr cmdMgr;
 
-    private AddBoxState() { }
+    private AddBoxState() {
+        cmdMgr = ShapeCmdMgr.getInstance();
+    }
 
     public static AddBoxState getInstance() {
         if (uniqueInstance == null)
@@ -18,11 +21,8 @@ public class AddBoxState extends State {
         return uniqueInstance;
     }
 
-    public State mousePressed(EditDiagramController subject) {
-        Command cmd = new AddBoxCmd(subject.getMouseEvent(), subject.getCmpstComponent());
-        cmd.execute();
-        subject.pushCmdHistoryStack(cmd);
-        //resetCursor();
+    public State mousePressed(int xCoord, int yCoord) {
+        cmdMgr.addBox(xCoord, yCoord);
         return InitState.getInstance();
     }
 

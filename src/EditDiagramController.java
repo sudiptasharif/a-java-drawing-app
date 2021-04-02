@@ -10,76 +10,34 @@ import java.awt.event.MouseEvent;
 import java.util.Stack;
 
 public class EditDiagramController {
-	private Stack<Command> cmdHistoryStack;
-	private Stack<Command> cmdUndoStack;
-	private ShapeCmpnt shapeCmpstComponent;
-	private MouseEvent mouseEvent;
-
-	private State addBoxState;
-	private State addCircleState;
-	private State initState;
-
 	private State state;
 	
 	public EditDiagramController() {
-		shapeCmpstComponent = new ShapeCmpstCmpnt();
-		cmdHistoryStack = new Stack<Command>();
-		cmdUndoStack = new Stack<Command>();
-		addBoxState = AddBoxState.getInstance();
-		addCircleState = AddCircleState.getInstance();
-		initState = InitState.getInstance();
-		state = initState;
-		mouseEvent = null;
+		state = InitState.getInstance();
 	}
 
 	public void boxBtnClkd() {
-		state = state.boxBtnClkd(this);
+		state = state.boxBtnClkd();
 	}
 
 	public void circleBtnClkd() {
-		state = state.circleBtnClkd(this);
+		state = state.circleBtnClkd();
 	}
 
 	public void mousePressed (MouseEvent e) {
-		this.mouseEvent = e;
-		state = state.mousePressed(this);
+		state = state.mousePressed(e.getX(), e.getY());
 	}
 
 	public void undoBtnClkd() {
-		state = state.undoBtnClkd(this);
+		state = state.undoBtnClkd();
 	}
 
 	public void redoBtnClkd() {
-		state = state.redoBtnClkd(this);
-	}
-
-	public Command popCmdHistoryStack() {
-		Command poppedCmd = null;
-		if(!cmdHistoryStack.empty())
-			poppedCmd = cmdHistoryStack.pop();
-		return poppedCmd;
-	}
-
-	public void pushCmdHistoryStack(Command command) {
-		cmdHistoryStack.push(command);
-	}
-
-	public Command popCmdUndoStack() {
-		Command poppedCmd = null;
-		if(!cmdUndoStack.empty())
-			poppedCmd = cmdUndoStack.pop();
-		return poppedCmd;
-	}
-
-	public void pushCmdUndoStack(Command command) {
-		cmdUndoStack.push(command);
+		state = state.redoBtnClkd();
 	}
 
 	public ShapeCmpnt getCmpstComponent() {
-		return shapeCmpstComponent;
+		return state.getShapesToDraw();
 	}
 
-	public MouseEvent getMouseEvent() {
-		return this.mouseEvent;
-	}
 }

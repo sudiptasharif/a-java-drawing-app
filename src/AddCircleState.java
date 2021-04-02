@@ -1,7 +1,10 @@
 public class AddCircleState extends State {
     private static AddCircleState uniqueInstance;
+    private ShapeCmdMgr cmdMgr;
 
-    private AddCircleState() { }
+    private AddCircleState() {
+           cmdMgr = ShapeCmdMgr.getInstance();
+    }
 
     public static AddCircleState getInstance() {
         if (uniqueInstance == null)
@@ -9,10 +12,8 @@ public class AddCircleState extends State {
         return uniqueInstance;
     }
 
-    public State mousePressed(EditDiagramController subject) {
-        Command cmd = new AddCircleCmd(subject.getMouseEvent(), subject.getCmpstComponent());
-        cmd.execute();
-        subject.pushCmdHistoryStack(cmd);
+    public State mousePressed(int xCoord, int yCoord) {
+        cmdMgr.addCircle(xCoord, yCoord);
         //resetCursor();
         return InitState.getInstance();
     }

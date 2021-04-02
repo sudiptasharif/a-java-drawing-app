@@ -1,18 +1,20 @@
 import java.awt.event.MouseEvent;
 
 public class AddBoxCmd implements Command {
-    private MouseEvent mouseEvent;
+    private int xCoord;
+    private int yCoord;
     private ShapeCmpnt shapeCmpstCmpnt;
     private ShapeCmpnt removedBox;
 
-    public AddBoxCmd(MouseEvent e, ShapeCmpnt shapeCmpstCmpnt) {
-        this.mouseEvent = e;
+    public AddBoxCmd(int xCoord, int yCoord, ShapeCmpnt shapeCmpstCmpnt) {
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
         this.shapeCmpstCmpnt = shapeCmpstCmpnt;
         this.removedBox = null;
     }
     @Override
     public void execute() {
-        shapeCmpstCmpnt.add(new BoxPrmtvCmpnt(mouseEvent.getX(), mouseEvent.getY()));
+        shapeCmpstCmpnt.add(new BoxPrmtvCmpnt(xCoord, yCoord));
     }
 
     @Override

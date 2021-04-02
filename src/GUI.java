@@ -24,21 +24,15 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 	public static final int WINDOW_WIDTH = 500;
 	public static final int WINDOW_HEIGHT = 250;
 	public static final int CODE_NONE = -1;
-	public static final int CODE_BOX = 0;
-	public static final int CODE_CIRC = 1;
-	public static final int CODE_UNDO = 2;
-	public static final int CODE_REDO = 3;
 	private JPanel panelBtns;
 	private PanelCanvas panelCanvas;
 	private JButton btnBox;
 	private JButton btnCirc;
 	private JButton btnUndo;
 	private JButton btnRedo;
-	private int btnSelected;
 	private EditDiagramController editDiagramController;
 
 	public GUI(){
-		btnSelected = CODE_NONE;
 		editDiagramController = new EditDiagramController();
 		setTitle(FRAME_TITLE);
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);

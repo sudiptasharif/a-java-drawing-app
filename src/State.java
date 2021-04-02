@@ -7,19 +7,27 @@ import java.awt.event.MouseEvent;
 
 public class State {
 
-    public State boxBtnClkd (EditDiagramController subject) { return this; }
-
-    public State circleBtnClkd (EditDiagramController subject) {
+    public State boxBtnClkd () {
         return this;
     }
 
-    public State mousePressed (EditDiagramController subject) { return this; }
-
-    public State undoBtnClkd (EditDiagramController subject) {
+    public State circleBtnClkd () {
         return this;
     }
 
-    public State redoBtnClkd (EditDiagramController subject) {
+    public State mousePressed (int xCoord, int yCoord) {
         return this;
+    }
+
+    public State undoBtnClkd () {
+        return this;
+    }
+
+    public State redoBtnClkd () {
+        return this;
+    }
+
+    public ShapeCmpnt getShapesToDraw() {
+        return null;
     }
 }
