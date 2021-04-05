@@ -1,7 +1,3 @@
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-
 public class InitState extends State {
     private static InitState uniqueInstance;
     private ShapeCmdMgr cmdMgr;
@@ -17,12 +13,10 @@ public class InitState extends State {
     }
 
     public State boxBtnClkd() {
-        //setCursor(Cursor.CROSSHAIR_CURSOR);
         return AddBoxState.getInstance();
     }
 
     public State circleBtnClkd() {
-        //setCursor(Cursor.CROSSHAIR_CURSOR);
         return AddCircleState.getInstance();
     }
 

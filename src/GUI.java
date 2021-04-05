@@ -16,14 +16,13 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame implements ActionListener, MouseListener{
-	public static final String FRAME_TITLE = "CSE 5322 Homework 1";
+	public static final String FRAME_TITLE = "CSE 5322 Homework 2";
 	public static final String LABEL_BOX = "Box";
 	public static final String LABEL_CIRC = "Circle";
 	public static final String LABEL_UNDO = "Undo";
 	public static final String LABEL_REDO = "Redo";
 	public static final int WINDOW_WIDTH = 500;
 	public static final int WINDOW_HEIGHT = 250;
-	public static final int CODE_NONE = -1;
 	private JPanel panelBtns;
 	private PanelCanvas panelCanvas;
 	private JButton btnBox;
@@ -70,15 +69,19 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 	@Override
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource() == btnBox) {
+			setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 			editDiagramController.boxBtnClkd();
 		}else if(e.getSource() == btnCirc) {
+			setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 			editDiagramController.circleBtnClkd();
 		}else if(e.getSource() == btnUndo){
+			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			editDiagramController.undoBtnClkd();
-			repaint();
+			repaintCanvas();
 		}else {
+			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			editDiagramController.redoBtnClkd();
-			repaint();
+			repaintCanvas();
 		}
 		setTargetBtnFocus((JButton) e.getSource());
 	}
@@ -91,10 +94,9 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		editDiagramController.mousePressed(e);
-		panelCanvas.setCmpstComponent(editDiagramController.getCmpstComponent());
-		clearAllBtnFocus();
-		repaint();
+		repaintCanvas();
 	}
 
 	@Override
@@ -125,5 +127,11 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 	private void setTargetBtnFocus(JButton selectedBtn) {
 		clearAllBtnFocus();
 		selectedBtn.setFocusPainted(true);
+	}
+	
+	private void repaintCanvas() {
+		panelCanvas.setCmpstComponent(editDiagramController.getCmpstComponent());
+		clearAllBtnFocus();
+		repaint();		
 	}
 }

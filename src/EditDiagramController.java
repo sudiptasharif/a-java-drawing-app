@@ -5,9 +5,7 @@
  * 
  * Controller Pattern
  */
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
-import java.util.Stack;
 
 public class EditDiagramController {
 	private State state;

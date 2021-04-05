@@ -1,5 +1,3 @@
-import java.awt.event.MouseEvent;
-
 public class AddBoxCmd implements Command {
     private int xCoord;
     private int yCoord;
@@ -13,8 +11,9 @@ public class AddBoxCmd implements Command {
         this.removedBox = null;
     }
     @Override
-    public void execute() {
+    public Object execute() {
         shapeCmpstCmpnt.add(new BoxPrmtvCmpnt(xCoord, yCoord));
+        return this;
     }
 
     @Override

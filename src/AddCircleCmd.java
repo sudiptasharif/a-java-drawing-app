@@ -1,5 +1,3 @@
-import java.awt.event.MouseEvent;
-
 public class AddCircleCmd implements Command {
     private int xCoord;
     private int yCoord;
@@ -14,8 +12,9 @@ public class AddCircleCmd implements Command {
     }
 
     @Override
-    public void execute() {
+    public Object execute() {
         shapeCmpstCmpnt.add(new CirclePrmtvCmpnt(xCoord, yCoord));
+        return this;
     }
 
     @Override

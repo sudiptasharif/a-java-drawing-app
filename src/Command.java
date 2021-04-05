@@ -7,7 +7,7 @@
  * Command Interface: Command
  */
 public interface Command {
-	public void execute();
+	public Object execute();
 	public void undo();
 	public void redo();
 	public boolean reversible();

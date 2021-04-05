@@ -25,14 +25,12 @@ public class ShapeCmdMgr {
 
     public void addBox(int xCoord, int yCoord) {
         Command cmd = new AddBoxCmd(xCoord, yCoord, shapeCmpstCmpnt);
-        cmd.execute();
-        cmdHistoryStack.push(cmd);
+        cmdHistoryStack.push((AddBoxCmd)cmd.execute());
     }
 
     public void addCircle(int xCoord, int yCoord) {
         Command cmd = new AddCircleCmd(xCoord, yCoord, shapeCmpstCmpnt);
-        cmd.execute();
-        cmdUndoStack.push(cmd);
+        cmdHistoryStack.push((AddCircleCmd)cmd.execute());
     }
 
     public void undoOperation() {
