@@ -18,21 +18,12 @@ public class AddBoxCmd implements Command {
 
     @Override
     public void undo() {
-        if(reversible()) {
-            removedBox = shapeCmpstCmpnt.remove();
-        }
+    	removedBox = shapeCmpstCmpnt.remove();
     }
 
     @Override
     public void redo() {
-        if (reversible() && removedBox != null) {
-            shapeCmpstCmpnt.add(removedBox);
-            removedBox = null;
-        }
-    }
-
-    @Override
-    public boolean reversible() {
-        return true;
+        shapeCmpstCmpnt.add(removedBox);
+        removedBox = null;
     }
 }

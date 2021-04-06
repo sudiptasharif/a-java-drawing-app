@@ -10,8 +10,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class BoxPrmtvCmpnt extends ShapeCmpnt {
-	private static final int WIDTH = 20;
-	private static final int HEIGHT = 20;
+	public static final int WIDTH = 20;
+	public static final int HEIGHT = 20;
 	
 	public BoxPrmtvCmpnt(int x, int y) {
 		// Shifting origin of Box to Center it

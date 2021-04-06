@@ -19,21 +19,12 @@ public class AddCircleCmd implements Command {
 
     @Override
     public void undo() {
-        if(reversible()) {
-            removedCircle = shapeCmpstCmpnt.remove();
-        }
+    	removedCircle = shapeCmpstCmpnt.remove();
     }
 
     @Override
     public void redo() {
-        if(reversible() && removedCircle != null) {
-            shapeCmpstCmpnt.add(removedCircle);
-            removedCircle = null;
-        }
-    }
-
-    @Override
-    public boolean reversible() {
-        return true;
+        shapeCmpstCmpnt.add(removedCircle);
+        removedCircle = null;
     }
 }

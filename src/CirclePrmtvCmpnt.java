@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class CirclePrmtvCmpnt extends ShapeCmpnt {
-	private static final int RADIUS = 20;
+	public static final int RADIUS = 20;
 	
 	public CirclePrmtvCmpnt(int x, int y) {
 		// Shifting origin of Circle to Center it

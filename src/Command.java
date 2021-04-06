@@ -10,5 +10,4 @@ public interface Command {
 	public Object execute();
 	public void undo();
 	public void redo();
-	public boolean reversible();
 }

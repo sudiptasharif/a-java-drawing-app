@@ -34,7 +34,7 @@ public class EditDiagramController {
 		state = state.redoBtnClkd();
 	}
 
-	public ShapeCmpnt getCmpstComponent() {
+	public ShapeCmpnt getCmpstCmpnt() {
 		return state.getShapesToDraw();
 	}
 
