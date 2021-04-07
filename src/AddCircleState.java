@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author Sudipta Sharif
+ * Singleton Pattern
+ * Also part of State Pattern
+ */
 public class AddCircleState extends State {
     private static AddCircleState uniqueInstance;
     private ShapeCmdMgr cmdMgr;

@@ -1,7 +1,7 @@
 /**
  * 
  * @author Sudipta Sharif
- * CSE 5322 Homework 2
+ * Expert Pattern
  * 
  */
 import java.awt.Graphics;
@@ -16,8 +16,8 @@ public class PanelCanvas extends JPanel{
 		shapeCmpstComponent = new ShapeCmpstCmpnt();
 	}
 		
-	public void setCmpstComponent(ShapeCmpnt cmpstComponent) {
-		shapeCmpstComponent = cmpstComponent;
+	public void setCmpstCmpnt(ShapeCmpnt cmpstCmpnt) {
+		shapeCmpstComponent = cmpstCmpnt;
 	}
 	
 	public void paintComponent(Graphics g) {

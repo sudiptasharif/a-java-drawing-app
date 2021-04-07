@@ -1,10 +1,9 @@
-import java.util.Stack;
-
 /**
- * Singleton
- * Using a Singleton, so that there is only one ShapeCmdMgr to
- * add shapes or undo or redo them
+ * 
+ * @author Sudipta Sharif
+ * Singleton Pattern
  */
+import java.util.Stack;
 public class ShapeCmdMgr {
     private static ShapeCmdMgr uniqueInstance = null;
     private Stack<Command> cmdHistoryStack;

@@ -1,8 +1,8 @@
 import java.awt.Graphics;
 
 /* 
+ * @author Sudipta Sharif
  * Composite Pattern
- * Component: ShapeComponent 
 */
 public abstract class ShapeCmpnt {
 	private int xCoord;

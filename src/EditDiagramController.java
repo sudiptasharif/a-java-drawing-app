@@ -1,8 +1,6 @@
 /**
  * 
  * @author Sudipta Sharif
- * CSE 5322 Homework 2
- * 
  * Controller Pattern
  */
 import java.awt.event.MouseEvent;

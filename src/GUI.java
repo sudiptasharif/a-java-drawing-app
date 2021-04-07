@@ -124,13 +124,13 @@ public class GUI extends JFrame implements ActionListener, MouseListener{
 		btnRedo.setFocusPainted(false);
 	}
 	
-	public void setTargetBtnFocus(JButton selectedBtn) {
+	public void setTargetBtnFocus(JButton btn) {
 		clearAllBtnFocus();
-		selectedBtn.setFocusPainted(true);
+		btn.setFocusPainted(true);
 	}
 	
 	public void repaintCanvas() {
-		panelCanvas.setCmpstComponent(edCntrlr.getCmpstCmpnt());
+		panelCanvas.setCmpstCmpnt(edCntrlr.getCmpstCmpnt());
 		clearAllBtnFocus();
 		repaint();		
 	}

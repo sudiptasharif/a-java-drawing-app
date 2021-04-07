@@ -1,6 +1,8 @@
 /**
- * State Pattern
+ * 
+ * @author Sudipta Sharif
  * Singleton Pattern
+ * Also part of State Pattern
  */
 public class AddBoxState extends State {
     private static AddBoxState uniqueInstance;

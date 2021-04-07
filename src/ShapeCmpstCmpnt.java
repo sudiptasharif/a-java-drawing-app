@@ -2,8 +2,8 @@ import java.awt.Graphics;
 import java.util.Stack;
 
 /* 
+ * @author Sudipta Sharif
  * Composite Pattern
- * Composite Component: ShapeCompositeComponent 
 */
 public class ShapeCmpstCmpnt extends ShapeCmpnt {
 	private Stack<ShapeCmpnt> shapeCollection;

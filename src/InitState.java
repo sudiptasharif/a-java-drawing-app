@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author Sudipta Sharif
+ * Singleton Pattern
+ * Also part of State Pattern
+ */
 public class InitState extends State {
     private static InitState uniqueInstance;
     private ShapeCmdMgr cmdMgr;

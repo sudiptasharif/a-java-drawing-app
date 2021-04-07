@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author Sudipta Sharif
+ * Command Pattern
+ */
 public class AddBoxCmd implements Command {
     private int xCoord;
     private int yCoord;

@@ -1,10 +1,7 @@
 /**
  * 
  * @author Sudipta Sharif
- * CSE 5322 Homework 2
- * 
  * Composite Pattern
- * Primitive Component 1: BoxPrimitiveComponent
  */
 import java.awt.Color;
 import java.awt.Graphics;
